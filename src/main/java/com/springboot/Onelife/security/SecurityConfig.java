@@ -83,17 +83,17 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }
-//    @Bean
-//    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-//        http.csrf().disable()
-//                .authorizeHttpRequests()
-//                .antMatchers("/hospitals","/register","/contact").permitAll()
-//                .antMatchers("/hospitals/**").authenticated()
-//                .and().formLogin()
-//                .and().httpBasic();
-//        System.out.println("hello");
-//        return http.build();
-//    }
+    /*@Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+        http.csrf().disable()
+                .authorizeHttpRequests()
+                .antMatchers("/hospitals","/register","/contact").permitAll()
+                .antMatchers("/hospitals/**").authenticated()
+                .and().formLogin()
+                .and().httpBasic();
+        System.out.println("hello");
+        return http.build();
+    }*/
 
 
     @Bean
