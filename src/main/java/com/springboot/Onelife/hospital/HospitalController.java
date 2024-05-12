@@ -62,7 +62,7 @@ public class HospitalController {
     }
 
 //    Delete Hospital
-    @DeleteMapping("/hospitals/{id}")
+    @DeleteMapping("/hospitals/delete/{id}")
     public void deleteHospital(@PathVariable int id){
         hospitalRepository.deleteById(id);
     }

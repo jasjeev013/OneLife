@@ -46,7 +46,7 @@ public class DepartmentController {
 
 
     //    Update department
-    @PutMapping("hospitals/{id}/departments/{dept_id}")
+    @PutMapping("/hospitals/{id}/departments/{dept_id}")
     public void updateDepartment(@PathVariable int id,@PathVariable int dept_id,@RequestBody Department department){
         Optional<Hospital> hospital = hospitalRepository.findById(id);
         department.setDepartmentId(new DepartmentId(dept_id,id));

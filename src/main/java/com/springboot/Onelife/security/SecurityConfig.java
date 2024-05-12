@@ -46,9 +46,38 @@ public class SecurityConfig {
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
                 .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests((requests)->requests
-                        .requestMatchers("/hospitals").hasRole("ADMIN")
-                        .requestMatchers("/hospitals/").hasAnyRole("ADMIN","USER")
+                        .requestMatchers("/hospitals","/hospitals/{id}","/hospitals","/hospitals/findByName/{id}",
+                                "/hospitals/findByAddress/{id}","/hospitals/delete/{id}")
+                        .hasRole("OWNER")
+
+                        .requestMatchers("/hospitals/{id}/departments","/hospitals/{id}/departments/{dept_id}",
+                                "/hospitals/{id}/departments/filterByName/{name}","/hospitals/{id}")
+                        .hasAnyRole("OWNER","ADMIN")
+
+                        .requestMatchers("/hospitals/{hospId}/doctors","/hospitals/{hospId}/departments/{deptId}/doctors",
+                                "/hospitals/{hospId}/departments/{id}/doctors","/hospitals/{hospId}/departments/{deptId}/doctorsbyname/{docName}",
+                                "/hospitals/{hospId}/doctors/{docId}","/hospitals/{hospId}/staff","/hospitals/{hospid}/departments/{deptid}/staff",
+                                "/hospitals/{hospId}/staff/{staffId}","/hospitals/{hospId}/departments/{id}/staffbyname/{staffName}",
+                                "/hospitals/{hospId}/departments/{id}/staff", "/hospitals/{hospId}/staff/{staffId}")
+                        .hasAnyRole("ADMIN","MANAGER")
+
+                        .requestMatchers("/hospitals/{hospId}/patients","/hospitals/{hospId}/pharmacy/{pharmacyId}/patients",
+                                "/hospitals/{hospId}/patients/{patientId}","/hospitals/{hospId}/patients/{patientId}",
+                                "hospitals/{hospitalId}/pharmacies","/hospitals/{hospitalId}/pharmacies/{pharmId}",
+                                "/hospitals/{hospitalId}/pharmacy","/hospitals/{hospitalId}/pharmacy/{pharmId}",
+                                "/hospital/{hospitalId}/pharmacy/{pharmacyId}","hospital/{hospitalId}/patients/{patientId}/invoices",
+                                "/hospital/{hospitalId}/patients/{patientId}/invoices","/hospital/{hospitalId}/invoices/{invoiceId}",
+                                "/hospital/{hospitalId}/invoices/{invoiceId}","hospitals/{hospitalId}/patients/{patientId}/prescriptions",
+                                "/hospitals/{hospitalId}/patients/{patientId}/prescriptions","/hospital/{hospitalId}/prescriptions/{prescriptionId}",
+                                "/hospitals/{hospitalId}/prescriptions/{prescriptionId}","/hospitals/{hospId}/doctors/{docId}/appointments",
+                                "hospital/{hospId}/patient/{patientId}/appointments/{doctorId}","/hospitals/{hospId}/doctors/{docId}/patients/{patientId}",
+                                "hospital/{hospitalId}/doctor/{doctorId}/patient/{patientId}","/hospital/{hospitalId}/doctors/{doctorId}/patients/{patientId}")
+                        .hasAnyRole("MANAGER","RECEPTIONIST")
+
+                        .requestMatchers("/hospitals/{hospitalId}/patients/{patientId}/invoices/{invoiceId}",
+                                "/hospitals/{hospitalId}/prescriptions/{prescriptionId}","/hospitals/{hospId}/appointments/{patientId}").permitAll()
                         .requestMatchers("/contact","/register").permitAll()
+
                         .requestMatchers( "/hospitals/**").authenticated())
                 .formLogin(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults());

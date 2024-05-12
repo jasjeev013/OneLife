@@ -25,12 +25,12 @@ public class DoctorController {
     }
 
     //    Get All Doctors
-    @GetMapping("hospitals/{hospId}/doctors")
+    @GetMapping("/hospitals/{hospId}/doctors")
     public List<Doctor> retrieveDoctorsForDepartment(@PathVariable int hospId){
         return doctorRepository.findByDoctorId_HospitalId(hospId);
     }
 
-    @GetMapping("hospitals/{hospId}/departments/{deptId}/doctors")
+    @GetMapping("/hospitals/{hospId}/departments/{deptId}/doctors")
     public List<Doctor> retrieveDoctorsForDepartment(@PathVariable int hospId,@PathVariable int deptId){
         return doctorRepository.findByDoctorId_HospitalIdAndDepartment_DepartmentId(hospId,new DepartmentId(deptId,hospId));
     }
@@ -38,20 +38,20 @@ public class DoctorController {
 
 
 //    Get By Id
-    @GetMapping("hospitals/{hospId}/doctors/{docId}")
+    @GetMapping("/hospitals/{hospId}/doctors/{docId}")
     public Optional<Doctor> retrieveDoctorsForDepartmentById(@PathVariable int hospId,@PathVariable int docId){
         return doctorRepository.findDoctorByDoctorId(new DoctorId(hospId,docId));
     }
 
 //    get by name
-    @GetMapping("hospitals/{hospId}/departments/{deptId}/doctorsbyname/{docName}")
+    @GetMapping("/hospitals/{hospId}/departments/{deptId}/doctorsbyname/{docName}")
     public List<Doctor> retrieveDoctorsForDepartmentByName(@PathVariable int hospId,@PathVariable int deptId,@PathVariable String docName){
         return doctorRepository.findByDoctorFNameAndDepartment_DepartmentId(docName,new DepartmentId(deptId,hospId));
     }
 
 
 //    add doctor
-    @PostMapping("hospitals/{hospId}/departments/{id}/doctors")
+    @PostMapping("/hospitals/{hospId}/departments/{id}/doctors")
     public void addDoctorForDepartment(@PathVariable int hospId, @PathVariable int id, @RequestBody Doctor doctor){
             Optional<Department> department = departmentRepository.findDepartmentByDepartmentId(new DepartmentId(id,hospId));
             if (department.isPresent()){
@@ -62,7 +62,7 @@ public class DoctorController {
 
 
 //    update doctor
-    @PutMapping("hospitals/{hospId}/doctors/{docId}")
+    @PutMapping("/hospitals/{hospId}/doctors/{docId}")
     public void updateDoctorForDepartment(@PathVariable int hospId, @PathVariable int docId,@RequestBody Doctor doctor){
         doctor.setDoctorId(new DoctorId(hospId,docId));
         doctorRepository.save(doctor);
@@ -71,7 +71,7 @@ public class DoctorController {
     }
 
 //    delete doctor
-    @DeleteMapping("hospitals/{hospId}/doctors/{doctId}")
+    @DeleteMapping("/hospitals/{hospId}/doctors/{doctId}")
     public void deleteDoctorForDepartment(@PathVariable int hospId, @PathVariable int id, @PathVariable int doctId){
         doctorRepository.deleteByDoctorId(new DoctorId(hospId,doctId));
     }

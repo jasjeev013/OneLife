@@ -20,12 +20,12 @@ public class InvoiceController {
     }
 
 
-    @GetMapping("hospital/{hospitalId}/patients/{patientId}/invoices")
+    @GetMapping("/hospital/{hospitalId}/patients/{patientId}/invoices")
     public List<Invoice> getAllInvoice(@PathVariable int hospitalId,@PathVariable int patientId){
         return invoiceRepository.findByPatient_PatientId(new PatientId(hospitalId,patientId));
     }
 
-    @GetMapping(".hospitals/{hospitalId}/patients/{patientId}/invoices/{invoiceId}")
+    @GetMapping("/hospitals/{hospitalId}/patients/{patientId}/invoices/{invoiceId}")
     public List<Invoice> getInvoiceById(@PathVariable int hospitalId,@PathVariable int patientId,@PathVariable int invoiceId){
         return invoiceRepository.findByInvoiceNumberAndPatient_PatientId(new InvoiceId(hospitalId,invoiceId),new PatientId(hospitalId,patientId));
     }
