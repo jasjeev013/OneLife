@@ -76,7 +76,7 @@ public class SecurityConfig {
 
                         .requestMatchers("/hospitals/{hospitalId}/patients/{patientId}/invoices/{invoiceId}",
                                 "/hospitals/{hospitalId}/prescriptions/{prescriptionId}","/hospitals/{hospId}/appointments/{patientId}").permitAll()
-                        .requestMatchers("/contact","/register").permitAll()
+                        .requestMatchers("/contact","/register","/**").permitAll()
 
                         .requestMatchers( "/hospitals/**").authenticated())
                 .formLogin(Customizer.withDefaults())
