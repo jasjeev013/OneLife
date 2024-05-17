@@ -106,4 +106,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 - Email: jasjeev99@gmail.com
 - LinkedIn: [LinkedIn Profile](https://www.linkedin.com/in/jasjeev-singh-k-773238247)
-- Portfolio: [My Portfolio](linktr.ee/jskkk_013)
+- Portfolio: [My Portfolio](https://www.linktr.ee/jskkk_013)
