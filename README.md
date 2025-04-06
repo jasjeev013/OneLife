@@ -1,4 +1,4 @@
-# OneLife: Your HealthCare Management
+# OneLife: The God's Own
 
 ## Table of Contents
 
